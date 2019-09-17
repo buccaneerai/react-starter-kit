@@ -16,6 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 3. Push the code to a new Github project and CircleCI project
 4. For information about deployments, see the Deployments section
 5. The font included in this starter kit (GT America) requires a license. If you don't have access to a license and don't want to buy one, you can change the font in theme.scss and src/fonts.
+6. Update the deploy command to point to the right S3 bucket.  Setup an AWS CloudFront system to serve it.
 
 This project provides some out-of-the-box resources (auth, users, feature toggles, notifications, messages). Using one requires simply uncommenting the module in `reducers/reducers.js`, `reducers/moduleName.js`, `epics/moduleNameEpics.js`, `reducers/schema.js` and `helpers/api.js`. They'll also need a backend implementation (Buccaneer has a companion template for the backend).
 
