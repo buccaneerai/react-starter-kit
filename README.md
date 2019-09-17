@@ -1,3 +1,6 @@
+## Warning about font
+The font included in this starter kit (GT America) requires a license. You can change it in theme.scss and src/fonts.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
