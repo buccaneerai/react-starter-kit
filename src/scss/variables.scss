@@ -1,0 +1,9 @@
+// Variables
+$theme-colors: (
+  "primary": #04a4bc,
+  "danger": #ff4136,
+  "info": #1eddfa,
+  "success": #9AD361
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
