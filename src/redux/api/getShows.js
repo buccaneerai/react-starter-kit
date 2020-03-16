@@ -10,7 +10,7 @@ export const getShows = function getShows({
 }) {
   const queryOptions = {limit, skip};
   const mutation = `query vars($filter: showsFilter!, $queryOptions: queryOptions) {
-    shows(filter: $filter, options: $queryOptions) {
+    shows(filter: $filter, queryOptions: $queryOptions) {
       _id,
       title
       genres

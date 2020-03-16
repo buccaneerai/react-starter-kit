@@ -24,7 +24,7 @@ const cards = [
       //     Create
       //   </Button>
       // </span>,
-      <Link key='user-view' to='/admin/users'>Manage</Link>
+      <Link key='user-view' to='/users'>Manage</Link>
     ]
   },
   {
@@ -32,7 +32,7 @@ const cards = [
     iconClasses: 'fa fa-list fa-5x',
     buttons: [
       <Link key='series-create' to='/series/create'>Create</Link>,
-      <Link key='series-view' to='/admin/series'>Manage</Link>,
+      <Link key='series-view' to='/series'>Manage</Link>,
     ]
   },
   {
@@ -40,7 +40,7 @@ const cards = [
     iconClasses: 'fa fa-film fa-5x',
     buttons: [
       <Link key='shows-create' to='/shows/create'>Create</Link>,
-      <Link key='shows-view' to='/admin/shows'>Manage</Link>,
+      <Link key='shows-view' to='/shows'>Manage</Link>,
     ]
   },
   {
@@ -48,7 +48,7 @@ const cards = [
     iconClasses: 'fas fa-theater-masks fa-5x',
     buttons: [
       <Link key='shows-create' to='/genres/create'>Create</Link>,
-      <Link key='shows-view' to='/admin/genres'>Manage</Link>,
+      <Link key='shows-view' to='/genres'>Manage</Link>,
     ]
   },
   {
@@ -56,7 +56,7 @@ const cards = [
     iconClasses: 'fas fa-gamepad fa-5x',
     buttons: [
       <Link key='shows-create' to='/games/create'>Create</Link>,
-      <Link key='shows-view' to='/admin/games'>Manage</Link>,
+      <Link key='shows-view' to='/games'>Manage</Link>,
     ]
   }
 ];
