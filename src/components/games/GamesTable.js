@@ -37,7 +37,7 @@ function Actions(props) {
   const {row, onRemove} = props;
   return (
     <div>
-      <Button variant='link'><i className='fa fa-edit'/></Button>
+      <Link to={`/games/${row._id}/edit`}><i className='fa fa-edit'/></Link>
       <Button variant='link'><i className='fa fa-trash text-danger'/></Button>
     </div>
   );
