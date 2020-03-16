@@ -5,7 +5,7 @@
 
 // import config from './config';
 // import tokenIsValid from './tokenIsValid';
-// import { getStore } from '../reducers/store';
+// import { getStore } from '../rexux/store';
 
 // function graphqlClient(
 //   _getState = getStore

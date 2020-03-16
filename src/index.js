@@ -6,8 +6,8 @@ import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import './styles/scss/theme.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { initStore } from './reducers/store';
-import epics from './epics/epics';
+import { initStore } from './redux/store';
+import epics from './redux/epics/epics';
 
 const epicMiddleware = createEpicMiddleware();
 const store = initStore({ epicMiddleware });
