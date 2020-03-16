@@ -67,11 +67,11 @@ const columns = [
     text: 'Youtube Id',
     formatter: youtubeVideoId => (
       <span>
-        <Link to={`https://youtube.com/watch?v=${youtubeVideoId}`}>
+        <a href={`https://youtube.com/watch?v=${youtubeVideoId}`}>
           {youtubeVideoId}
-        </Link>
+        </a>
         <Button variant='link' onClick={() => copy(youtubeVideoId)}>
-          <i className='fa-copy'/>
+          <i className='fa fa-copy'/>
         </Button>
       </span>
     )
@@ -102,7 +102,7 @@ const columns = [
     dataField: 'playlistId',
     text: 'Playlist',
     formatter: playlistId => (
-      <Link to={`/series/${playlistId}`}>{playlistId}</Link>
+      <Link to={`/series/${playlistId}`}>{truncate(playlistId, 12)}</Link>
     )
   },
   {
