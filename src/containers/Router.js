@@ -10,16 +10,9 @@ import SignupContainer from './users/SignupContainer';
 import PasswordResetContainer from './users/PasswordResetContainer';
 // Admin
 import AdminContainer from './admin/AdminContainer';
+import ManageGamesContainer from './games/ManageGamesContainer';
+// import ManageShowsContainer from './shows/ManageShowsContainer';
 import ManageUsersContainer from './admin/ManageUsersContainer';
-
-const HomeContainer = function HomeContainer() {
-  return (
-    <div>
-      <h1> Home page </h1>
-      <p> You can edit this in Router.js.</p>
-    </div>
-  );
-}
 
 const Router = function Router(props) {
   return (
@@ -28,12 +21,14 @@ const Router = function Router(props) {
         <div>
           <NavbarContainer />
           <ToastContainer hideProgressBar/>
-          <Route path='/' exact component={HomeContainer} />
+          <Route path='/' exact component={AdminContainer} />
           <Route path='/login' component={LoginContainer} />
           <Route path='/signup' component={SignupContainer} />
           <Route exact path='/admin' component={AdminContainer} />
           <Route path='/password-reset' component={PasswordResetContainer} />
           <Route exact path='/admin/users' component={ManageUsersContainer} />
+          {/*<Route exact path='/admin/shows' component={ManageShowsContainer} />*/}
+          <Route exact path='/admin/games' component={ManageGamesContainer} />
         </div>
       </BrowserRouter>
     </div>

@@ -24,9 +24,9 @@ export const MAKE_ADMIN_ERROR = 'users/MAKE_ADMIN_ERROR';
 export const SIGNUP = 'users/SIGNUP';
 export const SIGNUP_DONE = 'users/SIGNUP_DONE';
 export const SIGNUP_ERROR = 'users/SIGNUP_ERROR';
-export const DELETE = 'users/DELETE';
-export const DELETE_DONE = 'users/DELETE_DONE';
-export const DELETE_ERROR = 'users/DELETE_ERROR';
+export const REMOVE = 'users/REMOVE';
+export const REMOVE_DONE = 'users/REMOVE_DONE';
+export const REMOVE_ERROR = 'users/REMOVE_ERROR';
 
 const initialState = {
   loggingIn: false,
@@ -146,14 +146,14 @@ const reducer = function reducer(state = initialState, action = {}) {
         signupError: action.error,
         signupDone: null,
       };
-    case DELETE:
+    case REMOVE:
       return {
         ...state,
         deleting: true,
         deleteError: null,
         deleteDone: null
       };
-    case DELETE_DONE:
+    case REMOVE_DONE:
       return {
         ...state,
         deleting: false,
@@ -164,7 +164,7 @@ const reducer = function reducer(state = initialState, action = {}) {
           [usersSchema]
         )
       };
-    case DELETE_ERROR:
+    case REMOVE_ERROR:
       return {
         ...state,
         deleting: false,
@@ -199,15 +199,15 @@ export function logout() {
 }
 
 export function remove(params) {
-  return {type: DELETE, data: {...params}};
+  return {type: REMOVE, data: {...params}};
 }
 
 export function removeDone(data) {
-  return {type: DELETE_DONE, data};
+  return {type: REMOVE_DONE, data};
 }
 
 export function removeError({error}) {
-  return {type: DELETE_ERROR, error};
+  return {type: REMOVE_ERROR, error};
 }
 
 export function fetch(params) {

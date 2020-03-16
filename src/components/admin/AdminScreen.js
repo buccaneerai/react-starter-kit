@@ -51,6 +51,14 @@ const cards = [
       <Link key='shows-view' to='/admin/genres'>Manage</Link>,
     ]
   },
+  {
+    name: 'Games',
+    iconClasses: 'fas fa-gamepad fa-5x',
+    buttons: [
+      <Link key='shows-create' to='/games/create'>Create</Link>,
+      <Link key='shows-view' to='/admin/games'>Manage</Link>,
+    ]
+  }
 ];
 
 const AdminScreen = function AdminScreen(props) {
