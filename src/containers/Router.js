@@ -8,10 +8,16 @@ import NavbarContainer from './shared/NavbarContainer';
 import LoginContainer from './users/LoginContainer';
 import SignupContainer from './users/SignupContainer';
 import PasswordResetContainer from './users/PasswordResetContainer';
+// Games
+import EditGameContainer from './games/EditGameContainer';
+import ManageGamesContainer from './games/ManageGamesContainer';
+import NewGameContainer from './games/NewGameContainer';
+// Shows
+// import EditShowContainer from './games/EditShowContainer';
+import ManageShowsContainer from './shows/ManageShowsContainer';
+// import NewShowContainer from './games/NewShowContainer';
 // Admin
 import AdminContainer from './admin/AdminContainer';
-import ManageGamesContainer from './games/ManageGamesContainer';
-// import ManageShowsContainer from './shows/ManageShowsContainer';
 import ManageUsersContainer from './admin/ManageUsersContainer';
 
 const Router = function Router(props) {
@@ -26,9 +32,11 @@ const Router = function Router(props) {
           <Route path='/signup' component={SignupContainer} />
           <Route exact path='/admin' component={AdminContainer} />
           <Route path='/password-reset' component={PasswordResetContainer} />
-          <Route exact path='/admin/users' component={ManageUsersContainer} />
-          {/*<Route exact path='/admin/shows' component={ManageShowsContainer} />*/}
-          <Route exact path='/admin/games' component={ManageGamesContainer} />
+          <Route exact path='/users' component={ManageUsersContainer} />
+          <Route exact path='/shows' component={ManageShowsContainer} />
+          <Route exact path='/games' component={ManageGamesContainer} />
+          <Route exact path='/games/create' component={NewGameContainer} />
+          <Route exact path='/games/:gameId/edit' component={EditGameContainer} />
         </div>
       </BrowserRouter>
     </div>
