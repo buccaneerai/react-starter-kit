@@ -5,7 +5,7 @@ import { withInfo } from '@storybook/addon-info';
 
 import Loading from './Loading';
 
-storiesOf('Kit', module)
+storiesOf('Shared', module)
   .add(
     'loading screen',
     () => <Loading/>
