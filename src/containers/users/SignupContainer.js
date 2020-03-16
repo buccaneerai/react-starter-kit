@@ -1,17 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
+import {tokenIsValid} from '../../helpers/userHelpers';
 import {signup} from '../../redux/reducers/users';
 import SignupScreen from '../../components/users/SignupScreen';
 
 const SignupContainer = function SignupContainer(props) {
+  const {users} = props;
+  if (users.token && tokenIsValid({token: users.token})) {
+    return <Redirect to='/' />;
+  }
   return <SignupScreen {...props} />;
 };
 
 function mapState(state) {
   return {
-    // user: state.users.me,
+    users: state.users,
   };
 }
 
