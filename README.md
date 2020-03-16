@@ -1,24 +1,29 @@
 
 
 ## Description
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It also adds the following features and builds an opinionated frontend architecture around them:
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  It is well documentated!
+
+This application also adds the following architecture around the basic create-react-app application:
 - Functional programming (rxjs, lodash)
 - Routing (react-router-dom)
 - State management & epics (redux, react-redux, redux-observable, normalizr)
-- Standard resource modules (auth, users, messages, notifications, feature toggles)
 - Styles/components (reactstrap, bootstrap, scss, react-spinner, react-toastify)
 - Helper libraries (jsonwebtoken, moment, etc)
 - Component test harnasses (enzyme, enzyme-jest)
 
-## Steps to using this boilerplate
-1. `cp -r react-starter-kit my-new-project`
-2. replace "react-starter kit" in the package.json, .circleci/config.yml and helpers/getAppName.js'
-3. Push the code to a new Github project and CircleCI project
-4. For information about deployments, see the Deployments section
-5. The font included in this starter kit (GT America) requires a license. If you don't have access to a license and don't want to buy one, you can change the font in theme.scss and src/fonts.
-6. Update the deploy command to point to the right S3 bucket.  Setup an AWS CloudFront system to serve it.
-
-This project provides some out-of-the-box resources (auth, users, feature toggles, notifications, messages). Using one requires simply uncommenting the module in `reducers/reducers.js`, `reducers/moduleName.js`, `epics/moduleNameEpics.js`, `reducers/schema.js` and `helpers/api.js`. They'll also need a backend implementation (Buccaneer has a companion template for the backend).
+## Separation of concerns
+```bash
+src/ # all the source code for the app
+  components/ # UI components (React)
+  containers/ # UI containers (pass state and business logic to components)
+    Router.js # the front-end router. This is the top-level container.
+  epics/ # workflows and business logic built with redux-observable
+  helpers/ # helper functions for formatting strings, config, etc
+  reducers/ # redux reducers
+  styles/ # fonts, scss stylesheets, etc
+  App.js # the top-level application, which renders react containers/components
+  index.js # the entry point for the application
+```
 
 ## Available Scripts
 

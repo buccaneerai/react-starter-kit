@@ -1,36 +1,46 @@
 {
-  "name": "react-starter-kit",
+  "name": "joygage-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "copy-to-clipboard": "^3.3.1",
     "graphql-request": "^1.8.2",
-    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "normalizr": "^3.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.17",
+    "react-bootstrap-table-next": "^4.0.0",
+    "react-bootstrap-table2-filter": "^1.3.1",
+    "react-bootstrap-table2-toolkit": "^2.1.2",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "react-spinners": "^0.6.1",
     "react-toastify": "^5.3.2",
-    "reactstrap": "^8.0.1",
     "redux": "^4.0.4",
     "redux-observable": "^1.1.0",
+    "reselect": "^4.0.0",
+    "round-to": "^4.1.0",
     "rxjs": "^6.5.3",
-    "storybook-addon-jsx": "^7.1.6"
+    "storybook-addon-jsx": "^7.1.6",
+    "truncate": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "aws s3 sync build/ s3://foobar.com --profile buccaneer",
-    "storybook": "start-storybook -p 6006 .storybook",
-    "storybook:build": "build-storybook -s public"
+    "deploy:staging": "babel-node ./scripts/uploadToS3 --localDir ./build --s3Bucket staging-app.joygage.com",
+    "deploy:prod": "babel-node ./scripts/uploadToS3 --localDir ./build --s3Bucket app.joygage.com",
+    "storybook": "start-storybook -p 9009 -s public .storybook",
+    "storybook:build": "build-storybook -s public -c .storybook -o .storybook-build",
+    "storybook:deploy:staging": "babel-node ./bin/uploadToS3 --localDir ./.storybook-build --s3Bucket storybook.buccaneer.ai",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,18 +59,21 @@
   },
   "devDependencies": {
     "@babel/node": "^7.6.1",
-    "@storybook/addon-actions": "^5.2.0",
+    "@storybook/addon-actions": "^5.3.17",
     "@storybook/addon-info": "^5.2.0",
-    "@storybook/addon-knobs": "^5.2.0",
-    "@storybook/addon-links": "^5.2.0",
+    "@storybook/addon-knobs": "^5.3.17",
+    "@storybook/addon-links": "^5.3.17",
+    "@storybook/addon-viewport": "^5.3.17",
     "@storybook/addons": "^5.2.0",
     "@storybook/react": "^5.2.0",
     "babel-loader": "^8.0.6",
     "enzyme": "^3.10.0",
     "jest-enzyme": "^7.1.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "optimist": "^0.6.1",
     "prompt": "^1.0.0",
-    "react-test-renderer": "^16.9.0"
+    "react-test-renderer": "^16.9.0",
+    "rxjs-marbles": "^5.0.4",
+    "s3-node-client": "^4.4.4"
   }
 }

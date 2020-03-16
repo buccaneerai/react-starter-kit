@@ -1,10 +1,10 @@
 import { schema } from 'normalizr';
 
-// export const usersSchema = new schema.Entity(
-//   'users',
-//   {},
-//   { idAttribute: '_id' }
-// );
+export const usersSchema = new schema.Entity(
+  'users',
+  {},
+  { idAttribute: '_id' }
+);
 
 // export const messagesSchema = new schema.Entity(
 //   'messages',

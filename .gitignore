@@ -5,6 +5,13 @@
 /.pnp
 .pnp.js
 
+# config
+.env
+*.prod
+*.staging
+staging.*
+prod.*
+
 # testing
 /coverage
 

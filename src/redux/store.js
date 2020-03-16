@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import throttle from 'lodash/throttle';
 
-import reducer from './reducer';
+import reducer from './reducers/reducer';
 import { loadState, saveState } from './localStorage';
 
 let store;

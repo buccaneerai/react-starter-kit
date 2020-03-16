@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import { logout } from '../../reducers/users';
-import Header from '../../components/shared/Header';
+import { logout } from '../../redux/reducers/users';
+import Navbar from '../../components/lib/Navbar';
 
-let HeaderContainer = function HeaderContainer(props) {
-  return <Header {...props} />;
+const NavbarContainer = function NavbarContainer(props) {
+  return <Navbar {...props} />;
 };
 
 function mapState(state) {
@@ -26,15 +26,15 @@ function mapDispatch(dispatch) {
   };
 }
 
-HeaderContainer.defaultProps = {
+NavbarContainer.defaultProps = {
   email: null,
   token: null,
 };
 
-HeaderContainer.props = {
+NavbarContainer.props = {
   logout: PropTypes.func,
   email: PropTypes.string,
   token: PropTypes.string,
 };
 
-export default connect(mapState, mapDispatch)(HeaderContainer);
+export default connect(mapState, mapDispatch)(NavbarContainer);

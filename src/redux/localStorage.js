@@ -1,8 +1,8 @@
 import pick from 'lodash/pick';
 
-import getAppName from '../helpers/getAppName';
+import config from '../helpers/config';
 
-const STORAGE_KEY = getAppName();
+const STORAGE_KEY = config().appName;
 
 export const loadState = function loadState(storage = localStorage) {
   try {

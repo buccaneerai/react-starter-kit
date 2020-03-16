@@ -1,9 +1,16 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-// import NavbarContainer from '../containers/shared/NavbarContainer';
+import NavbarContainer from './shared/NavbarContainer';
+// Auth
+import LoginContainer from './users/LoginContainer';
+import SignupContainer from './users/SignupContainer';
+import PasswordResetContainer from './users/PasswordResetContainer';
+// Admin
+import AdminContainer from './admin/AdminContainer';
+import ManageUsersContainer from './admin/ManageUsersContainer';
 
 const HomeContainer = function HomeContainer() {
   return (
@@ -19,8 +26,14 @@ const Router = function Router(props) {
     <div>
       <BrowserRouter>
         <div>
+          <NavbarContainer />
           <ToastContainer hideProgressBar/>
-          <Route path='/' component={HomeContainer} />
+          <Route path='/' exact component={HomeContainer} />
+          <Route path='/login' component={LoginContainer} />
+          <Route path='/signup' component={SignupContainer} />
+          <Route exact path='/admin' component={AdminContainer} />
+          <Route path='/password-reset' component={PasswordResetContainer} />
+          <Route exact path='/admin/users' component={ManageUsersContainer} />
         </div>
       </BrowserRouter>
     </div>
