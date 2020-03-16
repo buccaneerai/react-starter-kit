@@ -10,9 +10,9 @@ import {
 } from 'rxjs/operators';
 
 import {
-  // FETCH,
-  // fetchDone,
-  // fetchError,
+  FETCH,
+  fetchDone,
+  fetchError,
   LOGIN,
   login as loginAction,
   loginDone,
@@ -28,7 +28,29 @@ import {
   // updateError
 } from '../reducers/users';
 import createUser from '../api/createUser';
+import getUsers from '../api/getUsers';
 import loginUser from '../api/loginUser';
+
+export const fetch = function fetch(
+  action$,
+  state$,
+  _getUsers = getUsers,
+) {
+  return action$.pipe(
+    filter(action => action.type === FETCH),
+    // debounceTime(300),
+    map(action => action.data),
+    // tap(data => console.log('SIGNUP_PARAMS', data)),
+    map(params => _getUsers(params)),
+    mergeMap(response$ => response$.pipe(
+      map(users => fetchDone({users})),
+      catchError(error => {
+        console.log('fetchUsers.error', error);
+        return of(fetchError({error}));
+      })
+    )
+  ));
+}
 
 export const login = function login(action$, state$, _loginUser = loginUser) {
   return action$.pipe(

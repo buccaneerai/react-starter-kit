@@ -6,9 +6,13 @@ import pick from 'lodash/pick';
 import Container from 'react-bootstrap/Container';
 
 import {tokenIsValid} from '../../helpers/userHelpers';
-import {fetch as fetchUsers, makeAdmin} from '../../redux/reducers/users';
+import {
+  fetch as fetchUsers,
+  makeAdmin,
+  remove as removeUser
+} from '../../redux/reducers/users';
 import Panel from '../../components/lib/Panel';
-import ManageUsers from '../../components/admin/ManageUsers';
+import ManageUsers from '../../components/users/ManageUsers';
 
 const ManageUsersContainer = function ManageUsersContainer(props) {
   const { token, users, location, makeAdmin } = props;
@@ -20,14 +24,16 @@ const ManageUsersContainer = function ManageUsersContainer(props) {
     new URLSearchParams(location.search).get('limit') || 25
   );
   useEffect(
-    () => _fetchUsers({
-      skip: pageIndex * pageSize,
-      limit: pageSize,
-      filter: {},
-    }),
+    () => {
+      _fetchUsers({
+        skip: pageIndex * pageSize,
+        limit: pageSize,
+        filter: {},
+      });
+      return;
+    },
     [_fetchUsers, pageIndex, pageSize]
   );
-  if (!tokenIsValid({token})) return <Redirect to='/login' />;
   if (!users.user || !users.user.isAdmin) {
     return (
       <Panel status='error'>
@@ -50,7 +56,7 @@ const ManageUsersContainer = function ManageUsersContainer(props) {
         </Panel>
       : <span/>
       }
-      {users && users.length
+      {usersArr && usersArr.length
         ? <ManageUsers
           users={usersArr}
           makeAdmin={makeAdmin}
@@ -87,6 +93,7 @@ function mapDispatch(dispatch) {
   return {
     fetchUsers: params => dispatch(fetchUsers(params)),
     makeAdmin: params => dispatch(makeAdmin(params)),
+    removeUser: params => dispatch(removeUser(params))
   };
 }
 

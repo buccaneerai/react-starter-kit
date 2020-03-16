@@ -10,7 +10,6 @@ import {tokenIsValid} from '../../helpers/userHelpers';
 function graphqlClient(_getState = getStore) {
   const token = _getState().getState().users.token;
   const url = `${config().apiUrl}`;
-  console.log('URL', url);
   // do not send expired tokens or the backend will be unhappy.
   let headers = {};
   if (token && tokenIsValid({token})) headers.Authorization = `Bearer ${token}`;

@@ -13,36 +13,44 @@ const cards = [
     name: 'Users',
     iconClasses: 'fas fa-users fa-5x',
     buttons: [
-      <span>
-        <Button
-          color='link'
-          key='user-create'
-          to='#'
-          id='user-create-btn'
-          style={{padding: '0em', verticalAlign: 'unset'}}
-        >
-          Create
-        </Button>
-      </span>,
-      <Link key='user-view' to='/users'>View</Link>
+      // <span>
+      //   <Button
+      //     color='link'
+      //     key='user-create'
+      //     to='#'
+      //     id='user-create-btn'
+      //     style={{padding: '0em', verticalAlign: 'unset'}}
+      //   >
+      //     Create
+      //   </Button>
+      // </span>,
+      <Link key='user-view' to='/admin/users'>Manage</Link>
     ]
   },
   {
-    name: 'Licenses',
-    iconClasses: 'fas fa-fingerprint fa-5x',
+    name: 'Playlists',
+    iconClasses: 'fa fa-list fa-5x',
     buttons: [
-      // <Link key='license-view' to='/licenses'>View</Link>,
-      <Link key='license-create' to='/licenses/create'>Create</Link>,
-      <Link key='license-view' to='/licenses'>View</Link>,
-      <Link key='license-view-archive' to='/licenses?archived=true'>Archived Licenses</Link>
+      <Link key='series-create' to='/series/create'>Create</Link>,
+      <Link key='series-view' to='/admin/series'>Manage</Link>,
     ]
   },
   {
-    name: 'License Usage',
-    path: '/license-uses',
-    iconClasses: 'fas fa-chart-pie fa-5x',
-    buttons: [],
-  }
+    name: 'Shows',
+    iconClasses: 'fa fa-film fa-5x',
+    buttons: [
+      <Link key='shows-create' to='/shows/create'>Create</Link>,
+      <Link key='shows-view' to='/admin/shows'>Manage</Link>,
+    ]
+  },
+  {
+    name: 'Genres',
+    iconClasses: 'fas fa-theater-masks fa-5x',
+    buttons: [
+      <Link key='shows-create' to='/genres/create'>Create</Link>,
+      <Link key='shows-view' to='/admin/genres'>Manage</Link>,
+    ]
+  },
 ];
 
 const AdminScreen = function AdminScreen(props) {
@@ -60,7 +68,7 @@ const AdminScreen = function AdminScreen(props) {
               <Card.Body>
                 <i className={c.iconClasses + ' text-primary text-center'}/>
                 <Card.Title>{c.name}</Card.Title>
-                {c.buttons.map(b => b)}
+                {c.buttons.map(b => <span style={{marginRight: '0.5em'}}>{b}</span>)}
               </Card.Body>
             </Card>
           </Col>

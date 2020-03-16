@@ -1,4 +1,5 @@
 import isString from 'lodash/isString';
+import omit from 'lodash/omit';
 import jwtDecode from 'jwt-decode';
 import { normalize } from 'normalizr';
 
@@ -23,6 +24,9 @@ export const MAKE_ADMIN_ERROR = 'users/MAKE_ADMIN_ERROR';
 export const SIGNUP = 'users/SIGNUP';
 export const SIGNUP_DONE = 'users/SIGNUP_DONE';
 export const SIGNUP_ERROR = 'users/SIGNUP_ERROR';
+export const DELETE = 'users/DELETE';
+export const DELETE_DONE = 'users/DELETE_DONE';
+export const DELETE_ERROR = 'users/DELETE_ERROR';
 
 const initialState = {
   loggingIn: false,
@@ -141,7 +145,32 @@ const reducer = function reducer(state = initialState, action = {}) {
         signingUp: false,
         signupError: action.error,
         signupDone: null,
-      }
+      };
+    case DELETE:
+      return {
+        ...state,
+        deleting: true,
+        deleteError: null,
+        deleteDone: null
+      };
+    case DELETE_DONE:
+      return {
+        ...state,
+        deleting: false,
+        deleteError: null,
+        deleteDone: action.data,
+        users: normalize(
+          Object.values(omit(state.db.entities.users, action.data._id)),
+          [usersSchema]
+        )
+      };
+    case DELETE_ERROR:
+      return {
+        ...state,
+        deleting: false,
+        deleteError: action.error,
+        deleteDone: null,
+      };
     default:
       return state;
   }
@@ -169,10 +198,22 @@ export function logout() {
   return {type: LOGOUT, data: null};
 }
 
-export function fetch({ filter }) {
+export function remove(params) {
+  return {type: DELETE, data: {...params}};
+}
+
+export function removeDone(data) {
+  return {type: DELETE_DONE, data};
+}
+
+export function removeError({error}) {
+  return {type: DELETE_ERROR, error};
+}
+
+export function fetch(params) {
   return {
     type: FETCH,
-    data: { filter }
+    data: {...params},
   };
 }
 
