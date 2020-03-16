@@ -1,38 +1,39 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import Nav from 'react-bootstrap/Navbar';
+
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-const Navbar = function Navbar(props) {
+const CustomNavbar = function CustomNavbar(props) {
   const {email,logout} = props;
   return (
-    <Nav bg="light" expand="lg">
-      <Nav.Brand href='/'>Joygage</Nav.Brand>
-      <Nav.Collapse className="justify-content-end">
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href='/'>Joygage</Navbar.Brand>
+      <Navbar.Collapse className="justify-content-end">
         {email
           ? <NavDropdown title={email} id="basic-nav-dropdown">
             <NavDropdown.Item href='/admin'>Admin Dashboard</NavDropdown.Item>
-            <NavDropdown.Item
-              href='#'
-              onClick={logout}
-            >
-              Sign Out
-            </NavDropdown.Item>
+            <NavDropdown.Item href='#'onClick={logout}>Sign Out</NavDropdown.Item>
           </NavDropdown>
-          : null
+          :
+          <Nav>
+            <Nav.Link href='/login'>Login</Nav.Link>
+            <Nav.Link href='/signup'>Sign Up</Nav.Link>
+          </Nav>
         }
-      </Nav.Collapse>
-    </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
-Navbar.defaultProps = {
+CustomNavbar.defaultProps = {
   email: null,
 };
 
-Navbar.propTypes = {
+CustomNavbar.propTypes = {
   email: PropTypes.string,
   logout: PropTypes.func.isRequired,
 };
 
-export default Navbar;
+export default CustomNavbar;
