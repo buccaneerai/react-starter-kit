@@ -37,10 +37,16 @@ jobs:
       #     command: nsp check
       - setup_remote_docker
       - deploy:
+          name: Deploy to staging
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "dev" ]; then
+              yarn storybook:build && yarn storybook:deploy:staging && deploy:staging
+            fi
+      - deploy:
           name: Deploy to prod
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              yarn deploy
+              yarn deploy:prod
             fi
 workflows:
   version: 2
