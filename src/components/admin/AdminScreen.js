@@ -71,8 +71,8 @@ const AdminScreen = function AdminScreen(props) {
       </Row>
       <Row>
         {cards.map(c => (
-          <Col md={3}>
-            <Card>
+          <Col md={3} key={c.name}>
+            <Card style={{marginBottom: '1em'}}>
               <Card.Body>
                 <i className={c.iconClasses + ' text-primary text-center'}/>
                 <Card.Title>{c.name}</Card.Title>
