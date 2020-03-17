@@ -93,7 +93,7 @@ export const update = function update(
     // debounceTime(300),
     map(action => action.data),
     // tap(data => console.log('SIGNUP_PARAMS', data)),
-    map(params => _update(params)),
+    map(({gameId, updates}) => _update({gameId, set: updates})),
     mergeMap(response$ => response$.pipe(
       map(data => updateDone({...data})),
       catchError(error => {

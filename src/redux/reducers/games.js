@@ -166,8 +166,8 @@ export function removeError({error}) {
   return {type: REMOVE_ERROR, error};
 }
 
-export function update(params) {
-  return {type: UPDATE, data: {...params}};
+export function update({gameId, updates}) {
+  return {type: UPDATE, data: {gameId, updates}};
 }
 
 export function updateDone(data) {

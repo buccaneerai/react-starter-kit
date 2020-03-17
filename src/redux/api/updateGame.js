@@ -2,7 +2,7 @@ import {timeout} from 'rxjs/operators';
 
 import request from './request';
 
-export const createUser = function createUser({gameId, updates, maxTime = 5000}) {
+export const updateGame = function updateGame({gameId, set, maxTime = 5000}) {
   const mutation = `mutation vars($gameId: ID!, $set: gameUpdate!) {
     gameUpdate(gameId: $gameId, set: $set) {
       _id
@@ -11,7 +11,7 @@ export const createUser = function createUser({gameId, updates, maxTime = 5000})
       categories
     }
   }`;
-  return request(mutation, {gameId, updates}).pipe(timeout(maxTime));
+  return request(mutation, {gameId, set}).pipe(timeout(maxTime));
 };
 
-export default createUser;
+export default updateGame;

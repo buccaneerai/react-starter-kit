@@ -32,7 +32,7 @@ const NewGameContainer = function NewGameContainer(props) {
   return (
     <EditGameScreen
       game={game}
-      updateGame={props.updateGame}
+      updateGame={updates => props.updateGame({gameId: game._id, updates})}
     />
   );
 };
