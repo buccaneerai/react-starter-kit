@@ -34,11 +34,13 @@ const fixedColStyle = {
 };
 
 function Actions(props) {
-  const {row, onRemove} = props;
+  const {row, remove} = props;
   return (
     <div>
       <Link to={`/games/${row._id}/edit`}><i className='fa fa-edit'/></Link>
-      <Button variant='link'><i className='fa fa-trash text-danger'/></Button>
+      <Button variant='link' onClick={() => remove({gameId: row._id})}>
+        <i className='fa fa-trash text-danger'/>
+      </Button>
     </div>
   );
 }
@@ -50,7 +52,7 @@ const columns = [
     formatter: (_id, row) => (
       <span>
         <Link to={`/games/${_id}`}>{_id}</Link>
-        <Actions row={row} onRemote={row.remove} />
+        <Actions row={row} remove={row.remove} />
       </span>
     ),
     style: {
@@ -81,12 +83,12 @@ const columns = [
   },
 ];
 
-const ShowsTable = function ShowsTable(props) {
-  const {documents, removeGame} = props;
-  console.log('ShowsTable.props', documents);
+const GamesTable = function GamesTable(props) {
+  const {documents, removeById} = props;
+  console.log('GamesTable.props', documents);
   const rows = documents.map(doc => ({
     ...doc,
-    remove: () => removeGame(doc._id)
+    remove: () => removeById(doc._id)
   }));
   return (
     <ToolkitProvider
@@ -110,13 +112,14 @@ const ShowsTable = function ShowsTable(props) {
   );
 }
 
-ShowsTable.defaultProps = {
+GamesTable.defaultProps = {
   documents: [],
 };
 
-ShowsTable.propTypes = {
+GamesTable.propTypes = {
   documents: PropTypes.array,
+  removeById: PropTypes.func.isRequired,
 };
 
-export default ShowsTable;
+export default GamesTable;
 

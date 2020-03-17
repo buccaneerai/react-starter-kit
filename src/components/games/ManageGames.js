@@ -22,7 +22,7 @@ const ManageGames = function ManageGames(props) {
         </Col>
       </Row>
       <Row>
-        <GamesTable documents={games} removeGame={removeGame} />
+        <GamesTable documents={games} removeById={removeGame} />
         <Paginator {...pagination} />
         />
       </Row>
