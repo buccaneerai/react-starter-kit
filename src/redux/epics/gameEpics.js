@@ -7,10 +7,18 @@ import {
   createError,
   FETCH,
   fetchDone,
-  fetchError
+  fetchError,
+  REMOVE,
+  removeDone,
+  removeError,
+  UPDATE,
+  updateDone,
+  updateError
 } from '../reducers/games';
 import createGame from '../api/createGame';
 import getGames from '../api/getGames';
+import removeGame from '../api/removeGame';
+import updateGame from '../api/updateGame';
 
 export const create = function create(
   action$,
@@ -26,7 +34,7 @@ export const create = function create(
     mergeMap(response$ => response$.pipe(
       map(response => createDone({response})),
       catchError(error => {
-        console.log('fetchShows.error', error);
+        console.log('createGame.error', error);
         return of(createError({error}));
       })
     )
@@ -47,8 +55,50 @@ export const fetch = function fetch(
     mergeMap(response$ => response$.pipe(
       map(games => fetchDone({games})),
       catchError(error => {
-        console.log('fetchShows.error', error);
+        console.log('fetchGames.error', error);
         return of(fetchError({error}));
+      })
+    )
+  ));
+};
+
+export const remove = function remove(
+  action$,
+  state$,
+  _remove = removeGame,
+) {
+  return action$.pipe(
+    filter(action => action.type === REMOVE),
+    // debounceTime(300),
+    map(action => action.data),
+    // tap(data => console.log('SIGNUP_PARAMS', data)),
+    map(params => _remove(params)),
+    mergeMap(response$ => response$.pipe(
+      map(response => removeDone({...response})),
+      catchError(error => {
+        console.log('removeGame.error', error);
+        return of(removeError({error}));
+      })
+    )
+  ));
+};
+
+export const update = function update(
+  action$,
+  state$,
+  _update = updateGame,
+) {
+  return action$.pipe(
+    filter(action => action.type === UPDATE),
+    // debounceTime(300),
+    map(action => action.data),
+    // tap(data => console.log('SIGNUP_PARAMS', data)),
+    map(params => _update(params)),
+    mergeMap(response$ => response$.pipe(
+      map(data => updateDone({...data})),
+      catchError(error => {
+        console.log('updateGame.error', error);
+        return of(updateError({error}));
       })
     )
   ));

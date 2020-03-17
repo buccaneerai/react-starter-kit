@@ -29,7 +29,9 @@ const initialState = {
   updating: false,
   updateDone: null,
   updateError: null,
-
+  removing: false,
+  removeDone: null,
+  removeError: null,
 };
 
 const reducer = function reducer(state = initialState, action = {}) {
@@ -100,17 +102,17 @@ const reducer = function reducer(state = initialState, action = {}) {
     case REMOVE:
       return {
         ...state,
-        deleting: true,
-        deleteError: null,
-        deleteDone: null
+        removing: true,
+        removeError: null,
+        removeDone: null
       };
     case REMOVE_DONE:
       return {
         ...state,
-        deleting: false,
-        deleteError: null,
-        deleteDone: action.data,
-        users: normalize(
+        removing: false,
+        removeError: null,
+        removeDone: action.data,
+        db: normalize(
           Object.values(omit(state.db.entities.games, action.data._id)),
           [gamesSchema]
         )
@@ -118,26 +120,14 @@ const reducer = function reducer(state = initialState, action = {}) {
     case REMOVE_ERROR:
       return {
         ...state,
-        deleting: false,
-        deleteError: action.error,
-        deleteDone: null,
+        removing: false,
+        removeError: action.error,
+        removeDone: null,
       };
     default:
       return state;
   }
 };
-
-export function remove(params) {
-  return {type: REMOVE, data: {...params}};
-}
-
-export function removeDone(data) {
-  return {type: REMOVE_DONE, data};
-}
-
-export function removeError({error}) {
-  return {type: REMOVE_ERROR, error};
-}
 
 export function fetch(params) {
   return {type: FETCH, data: {...params}};
@@ -152,10 +142,7 @@ export function fetchError({ error }) {
 }
 
 export function create(params) {
-  return {
-    type: CREATE,
-    data: {...params}
-  };
+  return {type: CREATE, data: {...params}};
 }
 
 export function createDone(data) {
@@ -166,11 +153,21 @@ export function createError({error}) {
   return {error, type: CREATE_ERROR};
 }
 
+export function remove(gameId) {
+  return {type: REMOVE, data: {gameId}};
+}
+
+export function removeDone(data) {
+  console.log('REMOVE_DONE', data);
+  return {type: REMOVE_DONE, data};
+}
+
+export function removeError({error}) {
+  return {type: REMOVE_ERROR, error};
+}
+
 export function update(params) {
-  return {
-    type: UPDATE,
-    data: {...params}
-  };
+  return {type: UPDATE, data: {...params}};
 }
 
 export function updateDone(data) {

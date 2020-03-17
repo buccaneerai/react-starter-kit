@@ -85,7 +85,7 @@ const reducer = function reducer(state = initialState, action = {}) {
         deleting: false,
         deleteError: null,
         deleteDone: action.data,
-        users: normalize(
+        shows: normalize(
           Object.values(omit(state.db.entities.shows, action.data._id)),
           [showsSchema]
         )
